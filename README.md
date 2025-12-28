@@ -2,6 +2,8 @@
 Explainable deep learning system for breast cancer detection using histopathology images (IDC dataset).
 
 🩺 Breast Cancer Detection using Explainable Deep Learning (IDC Dataset)
+
+
 📌 Overview
 
 Breast cancer is one of the most common and life-threatening cancers worldwide.
@@ -9,6 +11,7 @@ Early and accurate detection plays a critical role in improving patient outcomes
 
 This project implements an end-to-end deep learning pipeline to classify breast histopathology image patches as benign or malignant using transfer learning and explainable AI techniques.
 The focus is not only on performance, but also on medical reliability, evaluation correctness, and interpretability.
+
 
 🎯 Problem Statement
 
@@ -19,6 +22,7 @@ Benign (non-cancerous)
 Malignant (Invasive Ductal Carcinoma – IDC)
 
 Since missing a malignant case can have severe clinical consequences, the project prioritizes recall for malignant samples over raw accuracy.
+
 
 🧬 Dataset
 
@@ -42,10 +46,12 @@ IDC_regular_ps50_idx5/
 │   ├── 0/   (benign patches)
 │   └── 1/   (malignant patches)
 
+
 ⚠️ Important Dataset Handling Decision
 
 A patient-wise split was used instead of a random image split to prevent data leakage.
 This ensures that patches from the same patient never appear in both training and evaluation sets.
+
 
 🧠 Methodology
 Model Architecture
@@ -70,6 +76,7 @@ Why DenseNet121?
 
 DenseNet encourages feature reuse and performs well on texture-rich medical images, making it suitable for histopathology data.
 
+
 ⚙️ Training Strategy
 
 Frozen backbone to reduce overfitting and computational cost
@@ -85,6 +92,7 @@ Medically safe data augmentation (horizontal flips only)
 Training performed on Google Colab (GPU)
 
 Fine-tuning of the backbone was intentionally skipped due to compute constraints and to maintain training stability.
+
 
 📊 Evaluation Strategy
 
@@ -102,9 +110,10 @@ ROC-AUC
 
 This aligns with real-world medical decision-making, where missing cancer cases is more dangerous than false positives.
 
+
 📈 Results
 Confusion Matrix (Test Set)
-	Predicted Benign	Predicted Malignant
+Predicted Benign	Predicted Malignant
 Actual Benign	23,431	6,178
 Actual Malignant	1,185	9,868
 Key Metrics (Malignant Class)
@@ -117,6 +126,7 @@ Accuracy: ~0.82
 
 The model successfully identifies the majority of malignant cases while accepting a higher false-positive rate — a clinically safer trade-off.
 
+
 🔍 Explainability – Grad-CAM
 
 To improve transparency and trust, Grad-CAM (Gradient-weighted Class Activation Mapping) was applied to visualize which regions of histopathology patches influenced the model’s predictions.
@@ -126,6 +136,7 @@ Grad-CAM heatmaps confirm that the model focuses on relevant tissue structures r
 Example Visualization
 
 Explainability is a critical requirement for medical AI systems and was treated as a first-class component of this project.
+
 
 ⚠️ Limitations
 
@@ -137,6 +148,7 @@ Fine-tuning of the backbone was not performed
 
 Dataset limited to IDC subtype only
 
+
 🚀 Future Work
 
 Fine-tuning the DenseNet backbone on GPU
@@ -146,6 +158,7 @@ Aggregating patch-level predictions for whole-slide inference
 Multi-magnification analysis
 
 Lightweight deployment as a web demo (e.g., Streamlit)
+
 
 🧪 Tech Stack
 
@@ -160,6 +173,7 @@ Scikit-learn
 Matplotlib
 
 OpenCV (Grad-CAM)
+
 
 📌 Conclusion
 
